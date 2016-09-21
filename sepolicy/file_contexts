@@ -42,7 +42,6 @@
 
 /system/bin/setup_fs	--	u:object_r:setupfs_exec:s0
 /system/bin/touch_fw_update.sh	u:object_r:touchfw_exec:s0
-/system/bin/gps_daemon.sh	u:object_r:glgps_exec:s0
 /system/vendor/bin/tf_daemon	u:object_r:tee_exec:s0
 
 /sys/module/nvhost/parameters/register_sets	u:object_r:sysfs_module_nvhost:s0

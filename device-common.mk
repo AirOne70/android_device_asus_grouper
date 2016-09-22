@@ -101,6 +101,9 @@ PRODUCT_PACKAGES += \
     libdgv1
 
 PRODUCT_PACKAGES += \
+    libstlport
+
+PRODUCT_PACKAGES += \
     lights.grouper \
     audio.primary.grouper \
     power.grouper \

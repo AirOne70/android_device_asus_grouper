@@ -248,6 +248,9 @@
     <!-- Whether device supports double tap to wake -->
     <bool name="config_supportDoubleTapWake">true</bool>
 
+    <!-- Disable double tap for camera -->
+    <bool name="config_cameraDoubleTapPowerGestureEnabled">false</bool>
+
     <!-- Enable doze powersaving -->
     <bool name="config_enableAutoPowerModes">true</bool>
     

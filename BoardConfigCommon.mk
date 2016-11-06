@@ -35,7 +35,11 @@ TARGET_CPU_VARIANT := cortex-a9
 
 WITH_DEXPREOPT := false
 
+# Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
+ifeq ($(HOST_OS),linux)
+TARGET_USERIMAGES_USE_F2FS := true
+endif
 
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 681574400
 BOARD_CACHEIMAGE_PARTITION_SIZE := 464519168
@@ -58,8 +62,6 @@ WIFI_DRIVER_FW_PATH_AP      := "/vendor/firmware/fw_bcmdhd_apsta.bin"
 
 TARGET_BOOTLOADER_BOARD_NAME := grouper
 TARGET_NO_BOOTLOADER := true
-
-TARGET_GCC_VERSION_EXP := 4.9
 
 BOARD_USES_GENERIC_AUDIO := false
 BOARD_USES_ALSA_AUDIO := false
@@ -92,5 +94,8 @@ BOARD_SEPOLICY_DIRS += \
         device/asus/grouper/sepolicy
 
 # Kernel inline build
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
+TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-linux-androideabi-4.9
+TARGET_GCC_VERSION_EXP := 4.9
 TARGET_KERNEL_SOURCE := kernel/asus/tegra
 TARGET_KERNEL_CONFIG := tegra3_android_defconfig

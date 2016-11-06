@@ -18,6 +18,7 @@ PRODUCT_AAPT_CONFIG := normal large
 PRODUCT_AAPT_PREF_CONFIG := tvdpi
 # A list of dpis to select prebuilt apk, in precedence order.
 PRODUCT_AAPT_PREBUILT_DPI := hdpi
+PRODUCT_CHARACTERISTICS := tablet,nosdcard
 
 PRODUCT_PROPERTY_OVERRIDES := \
     drm.service.enabled=true \
@@ -30,6 +31,12 @@ PRODUCT_PROPERTY_OVERRIDES := \
 # disable Captive portal check
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.disable_captive_portal=1
+
+# ART
+PRODUCT_PROPERTY_OVERRIDES += \
+	dalvik.vm.dex2oat-flags=--no-watch-dog \
+	dalvik.vm.dex2oat-swap=false \
+	ro.sys.fw.dex2oat_thread_count=5
 
 # libhwui flags
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -120,8 +127,6 @@ PRODUCT_PACKAGES += \
     e2fsck \
     setup_fs
 
-PRODUCT_CHARACTERISTICS := tablet,nosdcard
-
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
@@ -146,3 +151,12 @@ PRODUCT_COPY_FILES += \
 
 WIFI_BAND := 802_11_BG
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4330/device-bcm.mk)
+
+# inherit from the non-open-source side
+$(call inherit-product, vendor/asus/grouper/asus-vendor.mk)
+$(call inherit-product, vendor/broadcom/grouper/broadcom-vendor.mk)
+$(call inherit-product, vendor/elan/grouper/elan-vendor.mk)
+$(call inherit-product, vendor/invensense/grouper/invensense-vendor.mk)
+$(call inherit-product, vendor/nvidia/grouper/nvidia-vendor.mk)
+$(call inherit-product, vendor/nxp/grouper/nxp-vendor.mk)
+$(call inherit-product, vendor/widevine/grouper/widevine-vendor.mk)

@@ -50,13 +50,11 @@ include frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk
 
 PRODUCT_COPY_FILES += \
     device/asus/grouper/rootdir/init.recovery.grouper.rc:root/init.recovery.grouper.rc \
+    device/asus/grouper/rootdir/init.grouper.usb.rc:root/init.grouper.usb.rc \
     device/asus/grouper/rootdir/ueventd.grouper.rc:root/ueventd.grouper.rc \
     device/asus/grouper/config/bin/touch_fw_update.sh:system/bin/touch_fw_update.sh \
-    device/asus/grouper/config/etc/gps.conf:system/etc/gps.conf \
     device/asus/grouper/config/etc/twrp.fstab:recovery/root/etc/twrp.fstab \
-    device/asus/grouper/ueventd.grouper.rc:root/ueventd.grouper.rc \
-    device/asus/grouper/init.grouper.usb.rc:root/init.grouper.usb.rc \
-    device/asus/grouper/gps.conf:system/etc/gps.conf \
+    device/asus/grouper/config/etc/gps.conf:system/etc/gps.conf \
     device/asus/grouper/gps/gps.xml:system/etc/gps.xml
 
 ifneq ($(TARGET_PREBUILT_WIFI_MODULE),)
@@ -89,6 +87,7 @@ PRODUCT_COPY_FILES += \
     device/asus/grouper/config/usr/sensor00fn11.idc:system/usr/idc/sensor00fn11.idc
 
 PRODUCT_PACKAGES += \
+    libstlport \
     libgpsd-compat \
     libwpa_client \
     hostapd \
@@ -99,9 +98,6 @@ PRODUCT_PACKAGES += \
 #help GL work in M
 PRODUCT_PACKAGES += \
     libdgv1
-
-PRODUCT_PACKAGES += \
-    libstlport
 
 PRODUCT_PACKAGES += \
     lights.grouper \

@@ -1,5 +1,3 @@
-TARGET_BOOTANIMATION_SIZE := 800x450
-
 # Release name
 PRODUCT_RELEASE_NAME := grouper
 

@@ -305,6 +305,25 @@ on boot
     chown system system /proc/ektf_dbg  
     start touch_fw_update
 
+# config swap
+    write /proc/sys/vm/page-cluster 0
+    write /proc/sys/vm/swappiness 40
+
+# some additional performance tweaks
+	setprop dalvik.vm.heapstartsize 8m
+	setprop dalvik.vm.heapgrowthlimit 128m
+	setprop dalvik.vm.heapsize 174m
+	setprop dalvik.vm.heaptargetutilization 0.75
+	setprop dalvik.vm.heapminfree 512k
+	setprop dalvik.vm.heapmaxfree 8m
+	write /sys/module/lowmemorykiller/parameters/cost 48
+	write /proc/sys/vm/highmem_is_dirtyable 1
+	write /sys/block/mmcblk0/queue/nr_requests 512
+	write /sys/block/mmcblk0/queue/add_random 0
+	write /sys/block/mmcblk0/queue/rq_affinity 2
+	write /sys/devices/tegradc.0/smartdimmer/enable 0
+	write /sys/devices/host1x/gr3d/enable_3d_scaling 1
+
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \

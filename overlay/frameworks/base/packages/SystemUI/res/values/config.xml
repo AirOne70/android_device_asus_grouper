@@ -30,5 +30,5 @@
     <bool name="config_recents_use_hardware_layers">true</bool>
 
     <!-- The default tiles to display in QuickSettings -->
-    <string name="quick_settings_tiles_default" translatable="false">wifi,bt,battery,rotation,nfc,caffeine</string>
+    <string name="quick_settings_tiles_default" translatable="false">wifi,bt,battery,rotation,airplane,caffeine</string>
 </resources>

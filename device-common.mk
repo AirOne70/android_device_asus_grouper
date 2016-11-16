@@ -20,6 +20,8 @@ PRODUCT_AAPT_PREF_CONFIG := tvdpi
 PRODUCT_AAPT_PREBUILT_DPI := hdpi
 PRODUCT_CHARACTERISTICS := tablet,nosdcard
 
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+
 PRODUCT_PROPERTY_OVERRIDES := \
     drm.service.enabled=true \
     persist.sys.media.legacy-drm=true \

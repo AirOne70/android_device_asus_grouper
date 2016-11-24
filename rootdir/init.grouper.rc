@@ -292,19 +292,9 @@ on boot
     chmod 0664 /sys/android_touch/dt_timeout
 
 # Default Read Ahead value for sdcards
-    write /sys/block/mmcblk0/queue/read_ahead_kb 2048
-    write /sys/block/mmcblk1/queue/read_ahead_kb 2048
-
-# Load WiFi driver
-
-# BB mapping symbolic name to the logging ttyACM port
-    symlink /dev/ttyACM2 /dev/log_modem
-
-# Touch
-    chown system system /dev/elan-iap
-    chown system system /proc/ektf_dbg  
-    start touch_fw_update
-
+    write /sys/block/mmcblk0/queue/read_ahead_kb 128
+    write /sys/block/mmcblk1/queue/read_ahead_kb 128
+    
 # config swap
     write /proc/sys/vm/page-cluster 0
     write /proc/sys/vm/swappiness 40
@@ -316,6 +306,8 @@ on boot
 	setprop dalvik.vm.heaptargetutilization 0.75
 	setprop dalvik.vm.heapminfree 512k
 	setprop dalvik.vm.heapmaxfree 8m
+	write /sys/module/lowmemorykiller/parameters/adj "0,1,2,4,7,15"
+	write /sys/module/lowmemorykiller/parameters/minfree "8192,10240,12288,14336,16384,20480"
 	write /sys/module/lowmemorykiller/parameters/cost 48
 	write /proc/sys/vm/highmem_is_dirtyable 1
 	write /sys/block/mmcblk0/queue/nr_requests 512
@@ -323,6 +315,16 @@ on boot
 	write /sys/block/mmcblk0/queue/rq_affinity 2
 	write /sys/devices/tegradc.0/smartdimmer/enable 0
 	write /sys/devices/host1x/gr3d/enable_3d_scaling 1
+
+# Load WiFi driver
+
+# BB mapping symbolic name to the logging ttyACM port
+    symlink /dev/ttyACM2 /dev/log_modem
+
+# Touch
+    chown system system /dev/elan-iap
+    chown system system /proc/ektf_dbg  
+    start touch_fw_update
 
 service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf \

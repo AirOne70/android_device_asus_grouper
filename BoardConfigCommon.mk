@@ -99,3 +99,13 @@ TARGET_KERNEL_CUSTOM_TOOLCHAIN := arm-linux-androideabi-4.9
 TARGET_GCC_VERSION_EXP := 4.9
 TARGET_KERNEL_SOURCE := kernel/asus/tegra
 TARGET_KERNEL_CONFIG := tegra3_android_defconfig
+
+# Various optimizations
+TARGET_DISABLE_ARM_PIE := true
+TARGET_GLOBAL_CFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=hardfp -gtoggle -s -DNDEBUG -march=armv7-a -mthumb -O2 -funroll-loops -mimplicit-it=always -mno-warn-deprecated -mauto-it --disable-docs -mtls-dialect=gnu2 --param l1-cache-size=32 --param l1-cache-line-size=32 --param l2-cache-size=1024 --param simultaneous-prefetches=6 --param prefetch-latency=400 -mvectorize-with-neon-quad
+TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a9 -mfpu=neon -mfloat-abi=hardfp -gtoggle -s -DNDEBUG -O2 -funroll-loops -mthumb -march=armv7-a -mimplicit-it=always -mno-warn-deprecated -mauto-it --disable-docs -mtls-dialect=gnu2 --param l1-cache-size=32 --param l1-cache-line-size=32 --param l2-cache-size=1024 --param simultaneous-prefetches=6 --param prefetch-latency=400 -mvectorize-with-neon-quad
+BOARD_SKIP_ANDROID_DOC_BUILD := true
+DISABLE_DROIDDOC := true
+TARGET_ENABLE_NON_PIE_SUPPORT := true
+HWUI_COMPILE_FOR_PERF := true
+$(call add-product-dex-preopt-module-config,services,--compiler-filter=everything)

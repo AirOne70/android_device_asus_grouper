@@ -26,7 +26,6 @@ PRODUCT_PROPERTY_OVERRIDES := \
     drm.service.enabled=true \
     persist.sys.media.legacy-drm=true \
     media.stagefright.less-secure=true \
-    media.stagefright.legacyencoder=true \
     tf.enable=y \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15
@@ -121,7 +120,7 @@ PRODUCT_PACKAGES += \
 
 # NFC packages
 PRODUCT_PACKAGES += \
-    libnfc\
+    libnfc \
     nfc.grouper \
     Nfc \
     Tag
